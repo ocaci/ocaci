@@ -34,7 +34,11 @@ jobs:
         run: |
           PR_AUTHOR=${{ github.event.pull_request.user.login }}
           for f in $CHANGED_FILES; do
+<<<<<<< HEAD
             VAL=$(grep -E '^github:' "${GITHUB_WORKSPACE}/$f" | sed 's/^github:[[:space:]]*//')
+=======
+            VAL=$(grep -E '^github:' $f | sed 's/^github:[[:space:]]*//')
+>>>>>>> 9b45a69 (ci: uppdate PR sync workflow)
             if [ "$VAL" != "$PR_AUTHOR" ]; then
               echo "ERROR: front-matter github ($VAL) does not match PR author ($PR_AUTHOR)"
               exit 1
