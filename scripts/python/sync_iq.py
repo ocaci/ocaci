@@ -86,8 +86,13 @@ def main(target_files=None):
     files = target_files if target_files else default_files
 
     for file in files:
+        # Load front-matter directly from file
         post = frontmatter.load(file)
         iq_profile = post.get('iqProfile')
+        # Ensure iqProfile exists before normalizing
+        if not iq_profile:
+            print(f"ERROR: Missing 'iqProfile' field in {file}")
+            sys.exit(1)
         # Normalize iqProfile to expert ID if a full URL is provided
         change_iq_profile = False
         if iq_profile.startswith("http://") or iq_profile.startswith("https://"):
@@ -96,9 +101,6 @@ def main(target_files=None):
             post['iqProfile'] = username
             iq_profile = username
             change_iq_profile = True
-        if not iq_profile:
-            print(f"ERROR: Missing 'iqProfile' field in {file}")
-            sys.exit(1)
         try:
             data = fetch_profile_data(iq_profile)
             aws_certifications = data['awsCertifications']
@@ -153,7 +155,8 @@ def main(target_files=None):
 
             if updated:
                 with open(file, 'w', encoding='utf-8') as f:
-                    frontmatter.dump(post, f)
+                    # Serialize front-matter and content as string
+                    f.write(frontmatter.dumps(post))
                 print(f"Updated {file}")
         except Exception as e:
             print(f"ERROR: Failed to fetch profile for {file} ({iq_profile}): {e}")
