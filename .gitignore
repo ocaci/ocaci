@@ -1,0 +1,31 @@
+.DS_Store
+
+# Hugo
+/public/
+/resources/_gen/
+.hugo_build.lock
+hugo_stats.json
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+.env
+.env.*
+.pytest_cache/
+.tox/
+.coverage
+htmlcov/
+.cache/
+
+# IDEs and editors
+.vscode/
+.idea/
+
+# Logs
+*.log 

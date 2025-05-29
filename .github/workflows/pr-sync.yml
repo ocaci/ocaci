@@ -1,0 +1,54 @@
+name: Sync new profile on PR
+on:
+  pull_request:
+    types: [opened, synchronize]
+    paths:
+      - 'content/consultants/*.md'
+jobs:
+  sync-profile:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v3
+        with:
+          python-version: '3.8'
+      - name: Install Poetry & Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install poetry
+          poetry install --no-root
+        working-directory: scripts/python
+      - name: Determine changed files
+        id: changed
+        run: |
+          CHANGED=$(git diff --name-only origin/${{ github.base_ref }}...${{ github.head_ref }} content/consultants/*.md)
+          echo "CHANGED_FILES=$CHANGED" >> $GITHUB_ENV
+      - name: Validate GitHub handle in front-matter
+        if: env.CHANGED_FILES != ''
+        run: |
+          ACTOR=${{ github.actor }}
+          for f in $CHANGED_FILES; do
+            VAL=$(poetry run python -c "import frontmatter,os,sys; fpath=os.path.abspath(os.path.join(os.getcwd(),'..','$f')); post=frontmatter.load(fpath); sys.stdout.write(post.get('github',''))")
+            if [ "$VAL" != "$ACTOR" ]; then
+              echo "ERROR: front-matter github ($VAL) does not match PR author ($ACTOR)"
+              exit 1
+            fi
+          done
+        working-directory: scripts/python
+      - name: Sync new profile
+        if: env.CHANGED_FILES != ''
+        run: |
+          for f in $CHANGED_FILES; do
+            poetry run python sync_iq.py --files "$PWD/../$f"
+          done
+        working-directory: scripts/python
+      - name: Commit updated profiles
+        uses: EndBug/add-and-commit@v7
+        with:
+          author_name: 'github-actions[bot]'
+          author_email: 'github-actions[bot]@users.noreply.github.com'
+          message: 'chore: sync new profile'
+          add: 'content/consultants/*.md'
+          branch: ${{ github.head_ref }} 
