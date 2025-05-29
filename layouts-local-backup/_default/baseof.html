@@ -4,15 +4,14 @@
   <meta charset="utf-8">
   <title>{{ block "title" . }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
   <meta name="description" content="{{ .Site.Params.description }}">
-  <link rel="stylesheet" href="{{ "css/simple.min.css" | relURL }}">
   <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
 </head>
 <body>
-  <header class="header">
-    <h1><a href="{{ "" | relLangURL }}">{{ .Site.Title }}</a></h1>
-    <nav class="nav">
+  <header>
+    <h1><a href="{{ "/" | relLangURL }}">{{ .Site.Title }}</a></h1>
+    <nav>
       {{ range .Site.Menus.main }}
-        <a href="{{ .URL | relLangURL }}">{{ .Name }}</a>
+        <a href="{{ .URL | relURL }}">{{ .Name }}</a>
       {{ end }}
     </nav>
   </header>

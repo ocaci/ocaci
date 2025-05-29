@@ -1,0 +1,13 @@
+{{/* layouts/partials/header.html */}}
+<header class="header">
+  <div class="site-title">
+    <a href="{{ "" | absLangURL }}">{{ .Site.Title }}</a>
+  </div>
+  <nav class="nav">
+    <ul id="menu">
+      {{- range .Site.Menus.main }}
+      <li><a href="{{ .URL | relLangURL }}">{{ .Name }}</a></li>
+      {{- end }}
+    </ul>
+  </nav>
+</header> 

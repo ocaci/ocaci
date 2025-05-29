@@ -1,10 +1,12 @@
 baseURL = "https://ocaci.github.io/ocaci"
 languageCode = "en-us"
 title = "OCACI – Open Collective of AWS Certified Independents"
+# theme removed; styling via Simple.css
 enableGitInfo = true
 
 # Pagination
-paginate = 10
+[pagination]
+  pagerSize = 10
 
 [params]
   # Short description for the site meta
@@ -26,6 +28,11 @@ paginate = 10
 [menu]
 
   [[menu.main]]
+    name = "Submit Work"
+    url = "/submit-work/"
+    weight = 5
+
+  [[menu.main]]
     name = "Consultants"
     url = "/consultants/"
     weight = 10
@@ -35,7 +42,8 @@ paginate = 10
     url = "/joining/"
     weight = 20
 
-  [[menu.main]]
-    name = "Governance"
-    url = "/governance/"
-    weight = 30 
+# Enable raw HTML (for redirects, etc.)
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

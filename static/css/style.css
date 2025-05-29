@@ -21,4 +21,39 @@ nav a {
 
 h2 {
   margin-top: 0;
+}
+
+/* Layout container */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1em;
+}
+
+/* Consultant cards grid */
+.consultant-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1em;
+}
+
+/* Card styling */
+.card {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 1em;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+footer p {
+  margin: 0;
 } 
