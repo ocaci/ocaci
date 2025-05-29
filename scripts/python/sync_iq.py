@@ -88,6 +88,14 @@ def main(target_files=None):
     for file in files:
         post = frontmatter.load(file)
         iq_profile = post.get('iqProfile')
+        # Normalize iqProfile to expert ID if a full URL is provided
+        change_iq_profile = False
+        if iq_profile.startswith("http://") or iq_profile.startswith("https://"):
+            # Extract the last path segment as the username
+            username = iq_profile.rstrip("/").split("/")[-1]
+            post['iqProfile'] = username
+            iq_profile = username
+            change_iq_profile = True
         if not iq_profile:
             print(f"ERROR: Missing 'iqProfile' field in {file}")
             sys.exit(1)
@@ -104,7 +112,8 @@ def main(target_files=None):
             rating = data['rating']
             number_of_reviews = data.get('numberOfReviews', '')
             reviews = data['reviews']
-            updated = False
+            # Initialize updated flag, respect any iqProfile normalization change
+            updated = change_iq_profile
 
             # update front-matter fields
             if post.get('awsCertifications') != aws_certifications:

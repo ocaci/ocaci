@@ -1,6 +1,6 @@
 name: Sync new profile on PR
 on:
-  pull_request:
+  pull_request_target:
     types: [opened, synchronize]
     paths:
       - 'content/consultants/*.md'
@@ -10,7 +10,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
+      - name: Fetch base branch
+        run: git fetch origin ${{ github.base_ref }}:${{ github.base_ref }}
       - uses: actions/setup-python@v3
         with:
           python-version: '3.8'
@@ -23,16 +27,16 @@ jobs:
       - name: Determine changed files
         id: changed
         run: |
-          CHANGED=$(git diff --name-only origin/${{ github.base_ref }}...${{ github.head_ref }} content/consultants/*.md)
+          CHANGED=$(git diff --name-only origin/${{ github.base_ref }}...HEAD -- content/consultants/*.md)
           echo "CHANGED_FILES=$CHANGED" >> $GITHUB_ENV
       - name: Validate GitHub handle in front-matter
         if: env.CHANGED_FILES != ''
         run: |
-          ACTOR=${{ github.actor }}
+          PR_AUTHOR=${{ github.event.pull_request.user.login }}
           for f in $CHANGED_FILES; do
             VAL=$(poetry run python -c "import frontmatter,os,sys; fpath=os.path.abspath(os.path.join(os.getcwd(),'..','$f')); post=frontmatter.load(fpath); sys.stdout.write(post.get('github',''))")
-            if [ "$VAL" != "$ACTOR" ]; then
-              echo "ERROR: front-matter github ($VAL) does not match PR author ($ACTOR)"
+            if [ "$VAL" != "$PR_AUTHOR" ]; then
+              echo "ERROR: front-matter github ($VAL) does not match PR author ($PR_AUTHOR)"
               exit 1
             fi
           done
