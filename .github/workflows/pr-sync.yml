@@ -34,7 +34,7 @@ jobs:
         run: |
           PR_AUTHOR=${{ github.event.pull_request.user.login }}
           for f in $CHANGED_FILES; do
-            VAL=$(poetry run python -c "import frontmatter,os,sys; fpath=os.path.abspath(os.path.join(os.getcwd(),'..','$f')); post=frontmatter.load(fpath); sys.stdout.write(post.get('github',''))")
+            VAL=$(poetry run python -c "import frontmatter,os,sys; fpath=os.path.abspath(os.path.join(os.getcwd(),'..','$f')); text=open(fpath,'r',encoding='utf-8').read(); post=frontmatter.loads(text); sys.stdout.write(post.get('github',''))")
             if [ "$VAL" != "$PR_AUTHOR" ]; then
               echo "ERROR: front-matter github ($VAL) does not match PR author ($PR_AUTHOR)"
               exit 1
