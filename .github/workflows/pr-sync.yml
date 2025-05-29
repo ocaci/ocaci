@@ -42,11 +42,11 @@ jobs:
           done
       - name: Sync new profile
         if: env.CHANGED_FILES != ''
+        working-directory: scripts/python
         run: |
           for f in $CHANGED_FILES; do
-            poetry run python sync_iq.py --files "$PWD/../$f"
+            poetry run python sync_iq.py --files "../../$f"
           done
-        working-directory: scripts/python
       - name: Commit updated profiles
         uses: EndBug/add-and-commit@v7
         with:
