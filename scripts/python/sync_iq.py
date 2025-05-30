@@ -11,10 +11,19 @@ import sys
 def fetch_profile_data(username):
     # Use a session to preserve cookies (including __csrf)
     session = requests.Session()
+    # Spoof a browser User-Agent so AWS IQ returns the CSRF token in the HTML
+    session.headers.update({
+        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/115.0.0.0 Safari/537.36"
+    })
     resp = session.get(f"https://iq.aws.amazon.com/e/{username}")
     resp.raise_for_status()
     soup = BeautifulSoup(resp.text, "html.parser")
-    csrf_token = soup.find("meta", {"name": "csrf-token"}).get("content", "")
+    tag = soup.find("meta", {"name": "csrf-token"})
+    if tag is None:
+        raise RuntimeError(
+            f"No CSRF token meta tag found for user {username}. Fetched HTML snippet: {resp.text[:200]!r}"
+        )
+    csrf_token = tag.get("content", "")
 
     # Set session headers for GraphQL call
     session.headers.update({
