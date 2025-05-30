@@ -1,0 +1,58 @@
+name: Sync Consultant Profiles on Main
+permissions:
+  contents: write
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'content/consultants/*.md'
+
+jobs:
+  sync:
+    env:
+      CHANGED_FILES: ''
+    # avoid re-triggering on its own commit
+    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install Poetry & Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install poetry
+          poetry install --no-root
+        working-directory: scripts/python
+
+      - name: Determine changed consultant files
+        id: changed
+        run: |
+          CHANGED=$(git diff --name-only ${{ github.event.before }}...${{ github.sha }} -- content/consultants/*.md)
+          echo "CHANGED_FILES=$CHANGED" >> $GITHUB_ENV
+
+      - name: Sync changed profiles
+        if: env.CHANGED_FILES != ''
+        run: |
+          for f in $CHANGED_FILES; do
+            poetry run python sync_iq.py --files "${GITHUB_WORKSPACE}/$f"
+          done
+        working-directory: scripts/python
+
+      - name: Commit updated profiles
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add content/consultants/*.md
+          git diff --cached --quiet || git commit -m "chore: sync consultant profiles [skip ci]"
+
+      - name: Push changes
+        run: git push origin main 

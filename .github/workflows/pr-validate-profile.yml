@@ -1,11 +1,16 @@
-name: Sync new profile on PR
+name: Validate new profile on PR
+permissions:
+  contents: read
+  issues: write
 on:
   pull_request_target:
     types: [opened, synchronize]
     paths:
       - 'content/consultants/*.md'
 jobs:
-  sync-profile:
+  validate-profile:
+    env:
+      CHANGED_FILES: ''
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -40,18 +45,10 @@ jobs:
               exit 1
             fi
           done
-      - name: Sync new profile
+      - name: Validate IQ profile by running sync_iq.py
         if: env.CHANGED_FILES != ''
         run: |
           for f in $CHANGED_FILES; do
-            poetry run python sync_iq.py --files "$PWD/../$f"
+            poetry run python sync_iq.py --files "$PWD/../../$f"
           done
         working-directory: scripts/python
-      - name: Commit updated profiles
-        uses: EndBug/add-and-commit@v7
-        with:
-          author_name: 'github-actions[bot]'
-          author_email: 'github-actions[bot]@users.noreply.github.com'
-          message: 'chore: sync new profile'
-          add: 'content/consultants/*.md'
-          branch: ${{ github.head_ref }} 
