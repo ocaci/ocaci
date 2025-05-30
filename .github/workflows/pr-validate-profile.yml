@@ -45,30 +45,10 @@ jobs:
               exit 1
             fi
           done
-      - name: Sync new profile
+      - name: Validate IQ profile by running sync_iq.py
         if: env.CHANGED_FILES != ''
         run: |
           for f in $CHANGED_FILES; do
             poetry run python sync_iq.py --files "$PWD/../../$f"
           done
         working-directory: scripts/python
-      - name: Build comment body
-        if: env.CHANGED_FILES != ''
-        run: |
-          echo "✅ Consultant profile validation succeeded!" > comment.md
-          echo "" >> comment.md
-          echo "** Following updates will be made when this PR is merged:**" >> comment.md
-          echo "" >> comment.md
-          for f in $CHANGED_FILES; do
-            echo "### $f" >> comment.md
-            echo '```yaml' >> comment.md
-            cat "${GITHUB_WORKSPACE}/$f" >> comment.md
-            echo '```' >> comment.md
-            echo "" >> comment.md
-          done
-      - name: Comment on PR
-        uses: peter-evans/create-or-update-comment@v3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          issue-number: ${{ github.event.pull_request.number }}
-          body-file: comment.md
