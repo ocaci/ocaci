@@ -6,6 +6,7 @@ import glob
 import os
 import argparse
 import sys
+import traceback
 
 
 def fetch_profile_data(username):
@@ -72,13 +73,19 @@ fragment PublicExpertProfile on ExpertProfile {
          "rating": edge["node"].get("rating", "")} 
         for edge in result.get("reviews", {}).get("edges", [])
     ]
+    # Safely extract hourly price values, handling None cases
+    hourly_min = result.get("hourlyPriceMin")
+    hourly_max = result.get("hourlyPriceMax")
+    hourly_min_value = hourly_min.get("value") if hourly_min else ""
+    hourly_max_value = hourly_max.get("value") if hourly_max else ""
+
     return {
         "name": result.get("displayName", ""),
         "bio": result.get("biography", ""),
         "tagline": result.get("firmName", ""),
         "location": result.get("firmCountryCode", ""),
-        "hourlyRateMin": result.get("hourlyPriceMin", {}).get("value", ""),
-        "hourlyRateMax": result.get("hourlyPriceMax", {}).get("value", ""),
+        "hourlyRateMin": hourly_min_value,
+        "hourlyRateMax": hourly_max_value,
         "profilePicture": result.get("profilePictureUrl", ""),
         "rating": result.get("ratingsTotal", ""),
         "numberOfReviews": result.get("numberOfReviews", ""),
@@ -93,6 +100,10 @@ def main(target_files=None):
     pattern = os.path.join(root_dir, 'content', 'consultants', '*.md')
     default_files = glob.glob(pattern)
     files = target_files if target_files else default_files
+
+    # Skip special files that don't have consultant profiles
+    skip_files = ['_index.md']
+    files = [f for f in files if os.path.basename(f) not in skip_files]
 
     for file in files:
         # Load front-matter directly from file
@@ -168,6 +179,7 @@ def main(target_files=None):
                     f.write(frontmatter.dumps(post))
                 print(f"Updated {file}")
         except Exception as e:
+            traceback.print_exc()
             print(f"ERROR: Failed to fetch profile for {file} ({iq_profile}): {e}")
             sys.exit(1)
 
