@@ -1,0 +1,451 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header, footer {
+  background: #eee;
+  padding: 1em;
+}
+
+main {
+  padding: 1em;
+}
+
+nav a {
+  margin-right: 1em;
+  text-decoration: none;
+  color: #333;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+/* Layout container */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1em;
+}
+
+/* Consultant cards grid */
+.consultant-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1em;
+}
+
+/* Certification pages */
+.certifications-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.certification-card {
+  background: var(--accent-bg);
+  padding: 1.5rem;
+  border-radius: var(--standard-border-radius);
+  border: 1px solid var(--accent);
+}
+
+.certification-card h2 {
+  margin: 0 0 1rem;
+  color: var(--accent);
+}
+
+.certification-card p {
+  margin: 0 0 1rem;
+  color: var(--text-light);
+}
+
+/* Card styling */
+.card {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 1em;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+footer p {
+  margin: 0;
+}
+
+/* Consultant Cards */
+.consultant-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+}
+
+.profile-picture {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto;
+}
+
+.tagline {
+  color: var(--text-light);
+  font-style: italic;
+  margin: 0;
+}
+
+.certifications {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.cert-badge {
+  background: var(--accent-bg);
+  color: var(--accent);
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.9rem;
+  border: 1px solid var(--accent);
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.stars {
+  --percent: calc(var(--rating) / 5 * 100%);
+  display: inline-block;
+  font-size: 1.25rem;
+  font-family: Times;
+  line-height: 1;
+}
+
+.stars::before {
+  content: '★★★★★';
+  letter-spacing: 3px;
+  background: linear-gradient(90deg, var(--accent) var(--percent), var(--border) var(--percent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.review-count {
+  color: var(--text-light);
+  font-size: 0.9rem;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-light);
+}
+
+.links {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+/* Consultant Profile */
+.consultant-profile {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.profile-info {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.profile-details {
+  flex: 1;
+}
+
+.profile-details h1 {
+  margin: 0 0 0.5rem;
+}
+
+.profile-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.bio {
+  margin: 2rem 0;
+}
+
+.review-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin: 1rem 0;
+}
+
+.review-card {
+  background: var(--accent-bg);
+  padding: 1.5rem;
+  border-radius: var(--standard-border-radius);
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.review-comment {
+  margin: 0;
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header, footer {
+  background: #eee;
+  padding: 1em;
+}
+
+main {
+  padding: 1em;
+}
+
+nav a {
+  margin-right: 1em;
+  text-decoration: none;
+  color: #333;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+/* Layout container */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1em;
+}
+
+/* Consultant cards grid */
+.consultant-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1em;
+}
+
+/* Card styling */
+.card {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 1em;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+footer p {
+  margin: 0;
+}
+
+/* Consultant Cards */
+.consultant-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+}
+
+.profile-picture {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto;
+}
+
+.tagline {
+  color: var(--text-light);
+  font-style: italic;
+  margin: 0;
+}
+
+.certifications {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.cert-badge {
+  background: var(--accent-bg);
+  color: var(--accent);
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.9rem;
+  border: 1px solid var(--accent);
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.stars {
+  --percent: calc(var(--rating) / 5 * 100%);
+  display: inline-block;
+  font-size: 1.25rem;
+  font-family: Times;
+  line-height: 1;
+}
+
+.stars::before {
+  content: '★★★★★';
+  letter-spacing: 3px;
+  background: linear-gradient(90deg, var(--accent) var(--percent), var(--border) var(--percent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.review-count {
+  color: var(--text-light);
+  font-size: 0.9rem;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-light);
+}
+
+.links {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+/* Consultant Profile */
+.consultant-profile {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.profile-info {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.profile-details {
+  flex: 1;
+}
+
+.profile-details h1 {
+  margin: 0 0 0.5rem;
+}
+
+.profile-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.bio {
+  margin: 2rem 0;
+}
+
+.review-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin: 1rem 0;
+}
+
+.review-card {
+  background: var(--accent-bg);
+  padding: 1.5rem;
+  border-radius: var(--standard-border-radius);
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.review-comment {
+  margin: 0;
+  font-style: italic;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .profile-header {
+    flex-direction: column;
+  }
+  
+  .profile-info {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .profile-actions {
+    width: 100%;
+    justify-content: center;
+  }
+} 
