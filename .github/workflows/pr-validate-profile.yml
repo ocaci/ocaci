@@ -32,7 +32,8 @@ jobs:
       - name: Determine changed files
         id: changed
         run: |
-          CHANGED=$(git diff --name-only origin/${{ github.base_ref }}...HEAD -- content/consultants/*.md)
+          # only include newly added consultant files
+          CHANGED=$(git diff --diff-filter=A --name-only origin/${{ github.base_ref }}...HEAD -- content/consultants/*.md | paste -sd ' ' -)
           echo "CHANGED_FILES=$CHANGED" >> $GITHUB_ENV
       - name: Validate GitHub handle in front-matter
         if: env.CHANGED_FILES != ''

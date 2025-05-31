@@ -36,7 +36,8 @@ jobs:
       - name: Determine changed consultant files
         id: changed
         run: |
-          CHANGED=$(git diff --name-only ${{ github.event.before }}...${{ github.sha }} -- content/consultants/*.md)
+          # join changed file paths into a single space-delimited string
+          CHANGED=$(git diff --name-only ${{ github.event.before }}...${{ github.sha }} -- content/consultants/*.md | paste -sd ' ' -)
           echo "CHANGED_FILES=$CHANGED" >> $GITHUB_ENV
 
       - name: Sync changed profiles
