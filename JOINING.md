@@ -4,33 +4,14 @@
 
 Thank you for your interest in joining the Open Collective of AWS Certified Independents (OCACI)!
 
-To join our directory as an official **OCACI Member**, you'll need to submit your profile:
+To join our directory as an official **OCACI Member**, [open a Join Request](https://github.com/ocaci/ocaci/issues/new?template=join-ocaci.yml).
 
-1. Create a new Markdown file under `content/consultants/` using a slug derived from your name (e.g., `john-doe.md`).
-2. Add only the following front-matter at the top of the file:
+You'll need:
+- Your AWS IQ expert ID
+- Your GitHub username
+- Your agreement to our governance
 
-    ```yaml
-    ---
-    name: Your Name
-    iqProfile: your-expert-id
-    github: your-github-username
-    ---
-    ```
-
-(Note your IQ profile should be available at https://iq.aws.amazon.com/e/your-expert-id)
-
-3. In your Pull Request description, explicitly agree to our [Governance](GOVERNANCE.md) and [Community Principles](README.md).
-For example:
-     ```
-     I agree to follow the project's governance and community principles.
-     ```
-
-**Review process:**
-- Maintainers will run script to fetch and populate additional profile fields (certifications, bio, ratings, etc.).
-- They will verify that the `github` front-matter matches the PR author's GitHub handle.
-- They will verify that you've agreed to follow the project's governance and community principles.
-
-Once approved, you'll be invited to the GitHub organization and your profile will go live on the site.
+Once approved, your profile will go live and you’ll be invited to the GitHub organization.
 
 ---
 
