@@ -31,9 +31,11 @@ hourlyRateMax: '300'
 hourlyRateMin: '220'
 iqProfile: farhadjahangirov
 location: GB
+locations:
+- GB
 name: Farhad Jahangirov
 numberOfReviews: 48
-profilePicture: https://d2e3fib3ujv0po.cloudfront.net/6202512d-52bf-45f9-94da-ab56db5ff7c5.jpeg?ver=1747607629966&Expires=1748649600&Key-Pair-Id=APKAIL4QVW66SMHGXK7A&Signature=Q1LnSPOxz~7r3DETOsv8QopBvP3GJdHsWzgPyjftT9EnI4H4t0uL7iv72GP8iOQy366sLrT8BS8DLKiVXOAmj9X9Qdqm7Qo37Ndk7uIG2TpJ7oC6c6uBse7tene5HtxuICPcc2iH2qkMZWDX5ckk-9lYMYgoUdF1l~YVkD--iA8wZ9T8ijRdJSJcZqIrY0zM73Txga3oikIkACj3IGXtjJL5KsdBroCr5QvNHLXK~ALPStG6froxVBwqVXIsithj1iN8tDT-CjoHnCsD26s215iS9ejBOfovF7~LBnThnR9xYB04NxrUvWzBp372qlmFW2JyIlE8Bi6EvWjtcCGNEg__
+profilePicture: https://d2e3fib3ujv0po.cloudfront.net/6202512d-52bf-45f9-94da-ab56db5ff7c5.jpeg?ver=1747607629966&Expires=1748736000&Key-Pair-Id=APKAIL4QVW66SMHGXK7A&Signature=LX835so3EohzcGpXJz0dggdABbpp112NVFTfh6Cu2UwKOOgf9xQpWcLmxle7VfbDruj89~IbJo~fevEIkpST9I1GcB8n0tRxyyDRmEP4uLmIJHUGMzUNdjJkkyI5LAe3cARnB-l3aPx8yZkbLNEbu7JsiCjFPDdC1ChFTCw2UgbQihwbyOlY4-MS4pG76pyH2bwjLl~6WBMBSDYav1MWjMmb~BB7JpVg3NibiId3d3lpkNZ9McScKjXGzOX9xqPLlWGUv5sT~wKWtwFEj8qrivEfOQ2QjMTq2XvLSdlwsWbxoMWYRc3Iy9V~X5IDA2tb5vA-6WuXaqBbhjieXesBTw__
 rating: 240
 reviews:
 - comment: Farhad offered highly professional support, and I look forward to working

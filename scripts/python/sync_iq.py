@@ -144,6 +144,10 @@ def main(target_files=None):
             if post.get('location') != location:
                 post['location'] = location
                 updated = True
+            # Ensure locations taxonomy matches location
+            if post.get('locations') != [location]:
+                post['locations'] = [location]
+                updated = True
             # new fields
             if post.get('name') != name:
                 post['name'] = name

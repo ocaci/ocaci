@@ -1,0 +1,10 @@
+{{ define "main" }}
+  <h1>Consultants in {{ .Title }}</h1>
+  <p><a href='{{ "locations/" | relLangURL }}' class='button'>Browse all locations</a></p>
+  
+  <div class="consultant-grid">
+    {{ range .Pages }}
+      {{ partial "consultant-card.html" . }}
+    {{ end }}
+  </div>
+{{ end }} 

@@ -1,14 +1,72 @@
 {{ define "main" }}
-  <h2>{{ .Params.name }}</h2>
-  <p>GitHub: <a href="https://github.com/{{ .Params.github }}">{{ .Params.github }}</a></p>
-  <p>AWS IQ: <a href="{{ .Params.iqProfile }}">{{ .Params.iqProfile }}</a></p>
-  {{ if .Params.certifications }}
-    <h3>Certifications</h3>
-    <ul>
-      {{ range .Params.certifications }}
-        <li>{{ . }}</li>
-      {{ end }}
-    </ul>
-  {{ end }}
-  {{ .Content }}
+  <article class="consultant-profile">
+    <header class="profile-header">
+      <div class="profile-info">
+        {{ if .Params.profilePicture }}
+          <img src="{{ .Params.profilePicture }}" alt="{{ .Params.name }}" class="profile-picture">
+        {{ end }}
+        <div class="profile-details">
+          <h1>{{ .Params.name }}</h1>
+          <p class="tagline">{{ .Params.tagline }}</p>
+          <div class="location">
+            {{ $loc := .Params.location }}
+            {{ $locSlug := $loc | urlize }}
+            <a href="{{ printf "locations/%s/" $locSlug | relLangURL }}">
+              <span class="flag">🏳️</span> {{ $loc }}
+            </a>
+          </div>
+          {{ if .Params.rating }}
+            <div class="rating">
+              <span class="stars" style="--rating: {{ div .Params.rating 4 }}"></span>
+              <span class="review-count">({{ .Params.numberOfReviews }} reviews)</span>
+            </div>
+          {{ end }}
+        </div>
+      </div>
+      
+      <div class="profile-actions">
+        {{ if .Params.iqProfile }}
+          <a href="https://iq.aws/{{ .Params.iqProfile }}" class="button" target="_blank">View AWS IQ Profile</a>
+        {{ end }}
+        {{ if .Params.github }}
+          <a href="https://github.com/{{ .Params.github }}" class="button secondary" target="_blank">GitHub Profile</a>
+        {{ end }}
+      </div>
+    </header>
+
+    {{ if .Params.awsCertifications }}
+      <section class="certifications">
+        <h2>AWS Certifications</h2>
+        <div class="cert-grid">
+          {{ range .Params.awsCertifications }}
+            {{ $cert := . }}
+            {{ $slug := $cert | urlize }}
+            <a href="{{ printf "awscertifications/%s/" $slug | relLangURL }}" class="cert-badge">{{ $cert }}</a>
+          {{ end }}
+        </div>
+      </section>
+    {{ end }}
+
+    <section class="bio">
+      <h2>Professional Experience</h2>
+      {{ .Params.bio | markdownify }}
+    </section>
+
+    {{ if .Params.reviews }}
+      <section class="reviews">
+        <h2>Client Reviews</h2>
+        <div class="review-grid">
+          {{ range .Params.reviews }}
+            <div class="review-card">
+              <div class="review-header">
+                <span class="stars" style="--rating: {{ .rating }}"></span>
+                <time datetime="{{ .date }}">{{ time.Format "January 2, 2006" .date }}</time>
+              </div>
+              <p class="review-comment">{{ .comment }}</p>
+            </div>
+          {{ end }}
+        </div>
+      </section>
+    {{ end }}
+  </article>
 {{ end }} 

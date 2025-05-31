@@ -1,0 +1,13 @@
+{{ define "main" }}
+  <h1>AWS Certifications</h1>
+  
+  <div class="certifications-list">
+    {{ range .Pages.ByTitle }}
+      <div class="certification-card">
+        <h2>{{ .Title }}</h2>
+        <p>{{ len .Pages }} consultant{{ if ne (len .Pages) 1 }}s{{ end }}</p>
+        <a href="{{ .Permalink }}" class="button">View Consultants</a>
+      </div>
+    {{ end }}
+  </div>
+{{ end }} 

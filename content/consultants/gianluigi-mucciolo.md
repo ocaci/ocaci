@@ -29,9 +29,11 @@ hourlyRateMax: '150'
 hourlyRateMin: '50'
 iqProfile: ongear
 location: IT
+locations:
+- IT
 name: Gianluigi Mucciolo
 numberOfReviews: 5
-profilePicture: https://d2e3fib3ujv0po.cloudfront.net/519877bf-2da0-43ef-938d-f49147e6f174.jpeg?ver=1736245338012&Expires=1748649600&Key-Pair-Id=APKAIL4QVW66SMHGXK7A&Signature=f6wqNCZgYV4A8iKmwdGG~cLGphYYORSiP-JuUlmZNmX6l-YGOrCRTI-HS3pFNJKSkrsTGD5zjmbFekdATau9-w-Y1vQ0dfAAEEh2wHIo5CP8h~-kpfB5~R5o~iulZX-Ntuc~jTsAJe5vrzFSgA9emWYMuZNcUyZcaV2akgBCtJZa5103ckO7nkAvrOmnmibqw3Ihc1HoFT5CXt-es6Ca2ivuSs03rEOnDpbp6Q9ddd2bGPNbCFg~FAOug5XtXXORLw5IrCHkeC~cR~3-MgPqR71KjRhn-I0MaDLHSA7PTbEnTz4lxcX0Fd1jf-bnWhJzXPhwl-P0Q5KJOkqt~jlucg__
+profilePicture: https://d2e3fib3ujv0po.cloudfront.net/519877bf-2da0-43ef-938d-f49147e6f174.jpeg?ver=1736245338012&Expires=1748736000&Key-Pair-Id=APKAIL4QVW66SMHGXK7A&Signature=cL427mwIW3FdouR98VdfBXQgrO791HwpOtGVi4g9c6f9G3S7AlogLBrbmo8azGLUPVi2xDUC-kI6YZDl~nHf~YOUmQPBNHl~dP2iXn-2Z0WAMCwkOtFGwU5o65WUXgAlhGklx0UcrmCE1At1qh~aD6ZgtpVfOgqx0mRytg81UsKwC3~9Wkedpjl5mKogRBNJHsrOsj1LmoEXWvNEBlY7bWPceteu7Pw-QJlA-YeaJviSxN4dv1YVI3hN2suiP9vLnDH1Pbt6dJ4gIiSKbPFx7-wy7QiFXP7K4Cwj-AhH1Zd7LjkJrkfMQMeYhCEXGDMl1jYucjE6GScYLBAriS-8VQ__
 rating: 25
 reviews:
 - comment: Gianluigi was exceptionally detail-oriented and provided valuable insights

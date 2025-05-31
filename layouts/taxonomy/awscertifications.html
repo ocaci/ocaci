@@ -1,0 +1,19 @@
+{{ define "main" }}
+  <h1>Consultants with {{ .Title }}</h1>
+  <p><a href='{{ "awscertifications/" | relLangURL }}' class='button'>Browse all AWS certifications</a></p>
+  
+  <!-- Debug info -->
+  <div style="display: none">
+    Title: {{ .Title }}
+    Pages: {{ len .Pages }}
+    {{ range .Pages }}
+      Page: {{ .File.Path }}
+    {{ end }}
+  </div>
+  
+  <div class="consultant-grid">
+    {{ range .Pages }}
+      {{ partial "consultant-card.html" . }}
+    {{ end }}
+  </div>
+{{ end }} 

@@ -12,10 +12,12 @@ To join our directory as an official **OCACI Member**, you'll need to submit you
     ```yaml
     ---
     name: Your Name
-    iqProfile: https://iq.aws.amazon.com/e/your-expert-id
+    iqProfile: your-expert-id
     github: your-github-username
     ---
     ```
+
+(Note your IQ profile should be available at https://iq.aws.amazon.com/e/your-expert-id)
 
 3. In your Pull Request description, explicitly agree to our [Governance](GOVERNANCE.md) and [Community Principles](README.md).
 For example:
@@ -26,6 +28,7 @@ For example:
 **Review process:**
 - Maintainers will run script to fetch and populate additional profile fields (certifications, bio, ratings, etc.).
 - They will verify that the `github` front-matter matches the PR author's GitHub handle.
+- They will verify that you've agreed to follow the project's governance and community principles.
 
 Once approved, you'll be invited to the GitHub organization and your profile will go live on the site.
 
