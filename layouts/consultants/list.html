@@ -1,12 +1,18 @@
 {{ define "main" }}
-  <h2>{{ .Title }}</h2>
+  <h1>{{ .Title }}</h1>
   {{ .Content }}
+  
+  <!-- Debug info -->
+  <div style="display: none">
+    Total pages: {{ len .RegularPages }}
+    {{ range .RegularPages }}
+      Page: {{ .File.Path }}
+    {{ end }}
+  </div>
+
   <div class="consultant-grid">
-    {{ range .Pages }}
-      <div class="card">
-        <h3><a href="{{ .RelPermalink }}">{{ .Params.name }}</a></h3>
-        <p><a href="https://github.com/{{ .Params.github }}">@{{ .Params.github }}</a></p>
-      </div>
+    {{ range .RegularPages.ByTitle }}
+      {{ partial "consultant-card.html" . }}
     {{ end }}
   </div>
 {{ end }} 

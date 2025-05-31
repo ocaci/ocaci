@@ -1,0 +1,37 @@
+<div class="card consultant-card">
+  {{ if .Params.profilePicture }}
+    <img src="{{ .Params.profilePicture }}" alt="{{ .Params.name }}" class="profile-picture">
+  {{ end }}
+  <h3>{{ .Params.name }}</h3>
+  <p class="tagline">{{ .Params.tagline }}</p>
+  <div class="rating">
+    {{ if and .Params.rating .Params.numberOfReviews }}
+      {{ $avg := div (float .Params.rating) (float .Params.numberOfReviews) }}
+      <span class="stars" style="--rating: {{ $avg }}"></span>
+      <span class="numeric-rating">{{ printf "%0.1f" $avg }} / 5</span>
+      <span class="review-count">({{ .Params.numberOfReviews }} reviews)</span>
+    {{ end }}
+  </div>
+  <div class="location">
+    {{ $loc := .Params.location }}
+    {{ $locSlug := $loc | urlize }}
+    <a href='{{ printf "locations/%s/" $locSlug | relLangURL }}'>
+      <span class="flag">🏳️</span> {{ $loc }}
+    </a>
+  </div>
+  {{ if .Params.awsCertifications }}
+    <div class="certifications">
+      {{ range .Params.awsCertifications }}
+        {{ $cert := . }}
+        {{ $slug := $cert | urlize }}
+        <a href='{{ printf "awscertifications/%s/" $slug | relLangURL }}' class="cert-badge">{{ $cert }}</a>
+      {{ end }}
+    </div>
+  {{ end }}
+  <div class="links">
+    <a href="{{ .Permalink }}" class="button">View Profile</a>
+    {{ if .Params.iqProfile }}
+      <a href="https://iq.aws/e/{{ .Params.iqProfile }}" class="button secondary" target="_blank">AWS IQ Profile</a>
+    {{ end }}
+  </div>
+</div> 
