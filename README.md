@@ -40,7 +40,7 @@ See [JOINING.md](JOINING.md) for how to become a member and submit your profile.
 
 - We prioritize transparency and trust
 - We collaborate rather than compete
-- We support independents and not resellers or consulting agencies
+- We support only individual AWS-certified consultants; resellers, agencies, and consulting firms are not eligible for membership.
 - We contribute openly to benefit the broader AWS community
 
 ## 🗳️ Governance

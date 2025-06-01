@@ -4,12 +4,7 @@
 
 Thank you for your interest in joining the Open Collective of AWS Certified Independents (OCACI)!
 
-To join our directory as an official **OCACI Member**, [open a Join Request](https://github.com/ocaci/ocaci/issues/new?template=join-ocaci.yml).
-
-You'll need:
-- Your AWS IQ expert ID
-- Your GitHub username
-- Your agreement to our governance
+To join our directory as an official **OCACI Member**, [open a Join Request Issue](https://github.com/ocaci/ocaci/issues/new?template=join-ocaci-iq.yml).
 
 Once approved, your profile will go live and you’ll be invited to the GitHub organization.
 

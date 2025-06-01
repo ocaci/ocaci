@@ -1,31 +1,13 @@
 name: Join OCACI
-description: Request to join as a member of the Open Collective of AWS Certified Independents
+description: Request to join as a member of the Open Collective of AWS Certified Independents (for those with an AWS IQ profile)
 title: "Join Request: [Your Name]"
 body:
-  - type: markdown
-    attributes:
-      value: |
-        Please review and agree to our [Governance](https://github.com/ocaci/ocaci/blob/main/GOVERNANCE.md) and [Community Principles](https://github.com/ocaci/ocaci/blob/main/README.md) before joining OCACI.
-  - type: input
-    id: name
-    attributes:
-      label: Full Name
-      placeholder: e.g., John Doe
-    validations:
-      required: true
   - type: input
     id: iq_profile
     attributes:
       label: AWS IQ Profile ID
       description: The expert ID from the IQ profile URL (https://iq.aws.amazon.com/e/expert-id)
       placeholder: e.g., johndoe
-    validations:
-      required: true
-  - type: input
-    id: github
-    attributes:
-      label: GitHub Username
-      placeholder: e.g., johndoe123
     validations:
       required: true
   - type: checkboxes
